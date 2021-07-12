@@ -1,7 +1,6 @@
 /*
  * sample SDL program
  */
-
 #include <iostream>
 #include <SDL.h>
 
@@ -18,7 +17,7 @@ int main(int argc, char *args[]) {
 
 	//Initialize SDL
 	if(SDL_Init(SDL_INIT_VIDEO) < 0) {
-		std::cout << "unable to initialize:" << SDL_GetError() std::endl;
+		std::cout << "unable to initialize:" << SDL_GetError() << std::endl;
 	} else {
 		// Create win
 		win = SDL_CreateWindow(
@@ -29,7 +28,7 @@ int main(int argc, char *args[]) {
 				SDL_WINDOW_SHOWN
 				);
 		if( win == NULL ) {
-			std::cout << "unable to create window:" << SDL_GetError() std::endl;
+			std::cout << "unable to create window:" << SDL_GetError() << std::endl;
 		} else {
 			// get win surface and fill color
 			screen = SDL_GetWindowSurface(win);
