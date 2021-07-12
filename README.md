@@ -11,6 +11,11 @@ mkdir build && cd build && cmake .. && make
 mkdir build && cd build && cmake .. -DCMAKE_TOOLCHAIN_FILE=../i686-w64-mingw.cmake && make
 ```
 
+# building for a window release (on linux, in ./build)
+```
+cmake .. -DCMAKE_TOOLCHAIN_FILE=../i686-w64-mingw.cmake -DCMAKE_BUILD_TYPE=Release && make
+```
+
 ## references
 references used.
  - [libsdl](https://lazyfoo.net/tutorials/SDL/)

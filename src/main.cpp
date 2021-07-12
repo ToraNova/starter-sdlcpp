@@ -32,14 +32,57 @@ int main(int argc, char *args[]) {
 		} else {
 			// get win surface and fill color
 			screen = SDL_GetWindowSurface(win);
-			SDL_FillRect(
-					screen, NULL,
-					SDL_MapRGB( screen->format, 0xFF, 0xFF, 0xFF )
-				    );
+			SDL_Event e;
 
-			// update and wait
+			int color = 0xff;
+			int flag = 0;
+
+			Uint32 ltrig = 0;
+
+			SDL_FillRect(screen, NULL,
+				SDL_MapRGB(
+					screen->format,
+					color, color, color
+				)
+			);
+
+			// update screen
 			SDL_UpdateWindowSurface(win);
-			SDL_Delay(2000);
+
+			while(1){
+				SDL_PollEvent(&e);
+				if( e.type == SDL_QUIT ) break;
+				if( e.type == SDL_KEYDOWN ){
+					switch(e.key.keysym.sym){
+						case SDLK_ESCAPE:
+							flag = 1;
+							break;
+						default:
+							break;
+					}
+				}
+
+				if(flag) break;
+
+				if( SDL_GetTicks() - ltrig > 500) {
+					// 1 second elapsed
+
+					// draw
+					SDL_FillRect(screen, NULL,
+						SDL_MapRGB(
+							screen->format,
+							color, color, color
+						)
+					);
+
+					// update screen
+					SDL_UpdateWindowSurface(win);
+					color = ~color;
+
+					//reset trigger
+					ltrig = SDL_GetTicks();
+				}
+			}
 		}
 	}
 
